@@ -1,0 +1,525 @@
+#Database
+
+unit_data = [
+    {"mv_code": "TYGG24ALP00001", "brand": "TOYOTA", "unit": "Alphard", "production_year": 2024, "branch": "Green Garden", "branch_code": "TYGG", "unit_code": "ALP", "location": "TYGG"},
+    {"mv_code": "SBGG24FRT00002", "brand": "SUBARU", "unit": "Forester", "production_year": 2024, "branch": "Green Garden", "branch_code": "SBGG", "unit_code": "FRT", "location": "SBGG"},
+    {"mv_code": "SBAS24FRT00003", "brand": "SUBARU", "unit": "Forester", "production_year": 2024, "branch": "Alam Sutera", "branch_code": "SBAS", "unit_code": "FRT", "location": "SBAS"},
+    {"mv_code": "TYGG25ZNX00004", "brand": "TOYOTA", "unit": "Innova Zenix", "production_year": 2025, "branch": "Green Garden", "branch_code": "TYGG", "unit_code": "ZNX", "location": "TYGG"},
+    {"mv_code": "TYGG25VLZ00005", "brand": "TOYOTA", "unit": "Veloz", "production_year": 2025, "branch": "Green Garden", "branch_code": "TYGG", "unit_code": "VLZ", "location": "TYGG"},
+    {"mv_code": "TYGG25FTR00006", "brand": "TOYOTA", "unit": "Fortuner", "production_year": 2025, "branch": "Green Garden", "branch_code": "TYGG", "unit_code": "FTR", "location": "TYGG"},
+    {"mv_code": "TYGG25YSC00007", "brand": "TOYOTA", "unit": "Yaris Cross", "production_year": 2025, "branch": "Green Garden", "branch_code": "TYGG", "unit_code": "YSC", "location": "SBGG"},
+    {"mv_code": "TYGG25GRY00008", "brand": "TOYOTA", "unit": "GR Yaris", "production_year": 2025, "branch": "Green Garden", "branch_code": "TYGG", "unit_code": "GRY", "location": "SBGG"},
+    {"mv_code": "TYGS25FTR00009", "brand": "TOYOTA", "unit": "Fortuner", "production_year": 2025, "branch": "Gading Serpong", "branch_code": "TYGS", "unit_code": "FTR", "location": "TYGS"},
+    {"mv_code": "TYGS25YSC00010", "brand": "TOYOTA", "unit": "Yaris Cross", "production_year": 2025, "branch": "Gading Serpong", "branch_code": "TYGS", "unit_code": "YSC", "location": "TYGS"},
+    {"mv_code": "TYGS25ALP00011", "brand": "TOYOTA", "unit": "Alphard", "production_year": 2025, "branch": "Gading Serpong", "branch_code": "TYGS", "unit_code": "ALP", "location": "TYGS"},
+    {"mv_code": "TYGS25RSH00012", "brand": "TOYOTA", "unit": "Rush", "production_year": 2025, "branch": "Gading Serpong", "branch_code": "TYGS", "unit_code": "RSH", "location": "TYGS"},
+    {"mv_code": "TYGS25YSC00013", "brand": "TOYOTA", "unit": "Yaris Cross", "production_year": 2025, "branch": "Gading Serpong", "branch_code": "TYGS", "unit_code": "YSC", "location": "TYGS"},
+    {"mv_code": "TYGS25GRY00014", "brand": "TOYOTA", "unit": "GR Yaris", "production_year": 2025, "branch": "Gading Serpong", "branch_code": "TYGS", "unit_code": "GRY", "location": "TYGG"},
+    {"mv_code": "TYGS25RSH00015", "brand": "TOYOTA", "unit": "Rush", "production_year": 2025, "branch": "Gading Serpong", "branch_code": "TYGS", "unit_code": "RSH", "location": "TYGG"},
+    {"mv_code": "SBGG25BRZ00016", "brand": "SUBARU", "unit": "BRZ", "production_year": 2025, "branch": "Green Garden", "branch_code": "SBGG", "unit_code": "BRZ", "location": "SBAS"},
+    {"mv_code": "SBGG25WRX00017", "brand": "SUBARU", "unit": "WRX", "production_year": 2025, "branch": "Green Garden", "branch_code": "SBGG", "unit_code": "WRX", "location": "SBAS"},
+    {"mv_code": "SBGG25FRT00018", "brand": "SUBARU", "unit": "Forester", "production_year": 2025, "branch": "Green Garden", "branch_code": "SBGG", "unit_code": "FRT", "location": "SBGG"},
+    {"mv_code": "SBGG25OTB00019", "brand": "SUBARU", "unit": "Outback", "production_year": 2025, "branch": "Green Garden", "branch_code": "SBGG", "unit_code": "OTB", "location": "SBGG"},
+    {"mv_code": "SBAS25BRZ00020", "brand": "SUBARU", "unit": "BRZ", "production_year": 2025, "branch": "Alam Sutera", "branch_code": "SBAS", "unit_code": "BRZ", "location": "SBAS"},
+    {"mv_code": "SBAS25WRX00021", "brand": "SUBARU", "unit": "WRX", "production_year": 2025, "branch": "Alam Sutera", "branch_code": "SBAS", "unit_code": "WRX", "location": "SBAS"},
+    {"mv_code": "SBAS25CST00022", "brand": "SUBARU", "unit": "Crosstrek", "production_year": 2025, "branch": "Alam Sutera", "branch_code": "SBAS", "unit_code": "CST", "location": "SBAS"}
+]
+
+
+cabang_data = {
+    "TYGG": {"nama": "Green Garden (Toyota)", "kapasitas": 6},
+    "TYGS": {"nama": "Gading Serpong (Toyota)", "kapasitas": 7},
+    "SBGG": {"nama": "Green Garden (Subaru)", "kapasitas": 8},
+    "SBAS": {"nama": "Alam Sutera (Subaru)", "kapasitas": 10},
+}
+
+def smart_input(prompt, pilihan_list):
+    print ("List:")
+    for i, val in enumerate(pilihan_list, 1):
+        print(f"{i}. {val}")
+    value = input(prompt)
+    if value.isdigit():
+        idx = int(value)
+        if 1 <= idx <= len(pilihan_list):
+            return pilihan_list[idx - 1]
+        else:
+            print("Nomor tidak ada dalam daftar.")
+            return smart_input(prompt, pilihan_list)
+    return value
+
+
+def get_branch_code(brand, branch):
+    for code, data in cabang_data.items():
+        if data["nama"].lower().startswith(branch.lower()) and brand.lower() in data["nama"].lower():
+            return code
+    return None
+
+def get_unit_code(unit_name):
+    for unit in unit_data:
+        if unit["unit"].lower() == unit_name.lower():
+            return unit["unit_code"]
+    return input("Unit baru, masukkan Kode Unit (3 huruf): ").upper()
+
+def get_last_sequence():
+    max_seq = 0
+    for unit in unit_data:
+        try:
+            seq = int(unit['mv_code'][-5:])
+            max_seq = max(max_seq, seq)
+        except:
+            continue
+    return max_seq
+
+#Filter ngambil data untuk branch/brand dari unit tertentu.
+def get_branch_list_by_brand(brand):
+    branch_list = []
+    for code, data in cabang_data.items():
+        nama_cabang = data.get("nama")
+        if nama_cabang and brand.lower() in nama_cabang.lower():
+
+            split_nama = nama_cabang.split(" (")
+            if len(split_nama) > 0:
+                branch_list.append(split_nama[0])
+    return branch_list
+
+def get_unit_list_by_brand(brand):
+    return list(set(u['unit'] for u in unit_data if u['brand'].lower() == brand.lower()))
+
+## MENU 1 - TAMPILKAN UNIT (DENGAN FITUR FILTER)
+
+def tampilkan_unit():
+    print("\nTAMPILKAN UNIT")
+    print("1. Tampilkan semua unit")
+    print("2. Filter berdasarkan Brand")
+    print("3. Filter berdasarkan Branch")
+    print("4. Filter berdasarkan Lokasi")
+    print("5. Filter berdasarkan Unit")
+    opsi = input("Pilih opsi (1-5): ")
+
+    brand_filter, branch_filter, location_filter, unit_filter = None, None, None, None
+
+    if opsi == "2":
+        brand_list = list(set(u['brand'] for u in unit_data))
+        brand_filter = smart_input("Pilih Brand: ", brand_list).upper()
+    elif opsi == "3":
+        branch_list = list(set(u['branch'] for u in unit_data))
+        branch_filter = smart_input("Pilih Branch: ", branch_list)
+    elif opsi == "4":
+        lokasi_list = list(set(u['location'] for u in unit_data))
+        location_filter = smart_input("Pilih Lokasi: ", lokasi_list).upper()
+    elif opsi == "5":
+        unit_list = list(set(u['unit'] for u in unit_data))
+        unit_filter = smart_input("Pilih Unit: ", unit_list)
+
+    print("\nDAFTAR UNIT:")
+    print(f"{'MV_CODE':<18}{'BRAND':<15}{'BRANCH':<20}{'UNIT':<18}{'YEAR':<6}{'LOCATION':<10}")
+    print("-" * 92)
+
+    found = False
+    for u in unit_data:
+        if brand_filter and u['brand'].upper() != brand_filter:
+            continue
+        if branch_filter and u['branch'] != branch_filter:
+            continue
+        if location_filter and u['location'].upper() != location_filter:
+            continue
+        if unit_filter and u['unit'] != unit_filter:
+            continue
+
+        found = True
+        print(f"{u['mv_code']:<18}{u['brand']:<15}{u['branch'][:20]:<20}{u['unit'][:18]:<18}{str(u['production_year']):<6}{u['location']:<10}")
+
+    if not found:
+        print("Data tidak ditemukan sesuai filter yang diberikan.")
+
+## Tambah Cabang Baru (Optional jika ada cabang baru dibuka, atau ketika input unit cabang tidak ditemukan di database)
+
+def tambah_cabang_baru():
+    print("\nTambah Data Cabang Baru")
+    brand = input("Masukkan Nama Brand (contoh: TOYOTA): ").upper()
+    if not brand:
+        print("Brand tidak boleh kosong.")
+        return None, None
+
+    cabang = input("Masukkan Nama Cabang (contoh: Kelapa Gading): ")
+    if not cabang:
+        print("Nama cabang tidak boleh kosong.")
+        return None, None
+
+    kode = input("Masukkan Branch Code (4 huruf): ").upper()
+    if not kode or len(kode) != 4:
+        print("Kode harus 4 huruf.")
+        return None, None
+
+    if kode in cabang_data:
+        print("Kode cabang sudah terdaftar.")
+        return None, None
+
+    try:
+        kapasitas = int(input("Masukkan Kapasitas Cabang: "))
+    except ValueError:
+        print("Kapasitas harus berupa angka.")
+        return None, None
+
+    cabang_data[kode] = {"nama": f"{cabang} ({brand.title()})", "kapasitas": kapasitas}
+    print(f"Cabang {cabang_data[kode]['nama']} berhasil ditambahkan dengan kode {kode}.")
+    return cabang, kode
+
+def pilih_lokasi():
+    lokasi_list = list(cabang_data.keys())
+    return smart_input("Masukkan Lokasi Penyimpanan (kode cabang): ", lokasi_list)
+
+## MENU 2 - TAMBAH UNIT 
+
+def tambah_unit():
+    def get_input_unit():
+        brand_list = list(set(u['brand'] for u in unit_data))
+        brand = smart_input("Pilih nomor atau masukkan nama Brand: ", brand_list).upper()
+        
+        branch_list = get_branch_list_by_brand(brand)
+        branch = smart_input("Pilih nomor atau masukkan nama Cabang: ", branch_list)
+        branch_code = get_branch_code(brand, branch)
+
+        if not branch_code:
+            print("\n Cabang belum terdaftar untuk brand tersebut.")
+            print("0. Tambah cabang baru")
+            opsi = input("Ketik 0 untuk tambah cabang baru, atau apapun untuk batal: ")
+            if opsi == "0":
+                branch, branch_code = tambah_cabang_baru()
+                if not branch_code:
+                    return None
+            else:
+                print("Proses dibatalkan.")
+                return None
+
+        unit_list = get_unit_list_by_brand(brand)
+        unit_name = smart_input("Pilih nomor atau masukkan nama Unit: ", unit_list)
+        unit_code = get_unit_code(unit_name)
+
+        while True:
+            tahun_input = input("Masukkan Tahun Produksi (4 digit): ").strip()
+            if not tahun_input.isdigit() or len(tahun_input) != 4:
+                print("Tahun harus berupa angka 4 digit, silahkan input ulang.")
+                continue
+
+            tahun = int(tahun_input)
+            if tahun < 2000 or tahun > 2099:
+                print("Tahun harus antara 2000 dan 2099.")
+                continue
+            break
+
+        location = pilih_lokasi()
+        stok = hitung_stok_per_location()
+        if stok.get(location, 0) >= cabang_data.get(location, {"kapasitas": 0})['kapasitas']:
+            print("Gagal: Lokasi tujuan sudah penuh.")
+            return None
+
+        return {
+            "brand": brand,
+            "branch": branch,
+            "branch_code": branch_code,
+            "unit": unit_name,
+            "unit_code": unit_code,
+            "production_year": tahun,
+            "location": location
+        }
+
+    data = get_input_unit()
+    if not data:
+        return
+
+    while True:
+        seq = get_last_sequence() + 1
+        mv_code = f"{data['branch_code']}{str(data['production_year'])[-2:]}{data['unit_code']}{str(seq).zfill(5)}"
+        
+        print("\nData yang akan disimpan:")
+        print(f"MV Code: {mv_code}")
+        print(f"Brand: {data['brand']}, Unit: {data['unit']}, Tahun: {data['production_year']}, Branch: {data['branch']}, Branch Code: {data['branch_code']}, Location: {data['location']}")
+        
+        confirm = input("Simpan data ini? (Y/n): ")
+        if confirm.lower() == 'y':
+            break
+        elif confirm.lower() == 'n':
+            edit = input("Mau edit data? (Y/n): ")
+            if edit.lower() == 'y':
+                print("\nPilih bagian yang ingin diubah:")
+                print("1. Brand")
+                print("2. Branch")
+                print("3. Unit")
+                print("4. Tahun Produksi")
+                print("5. Lokasi")
+                pilihan = input("Masukkan nomor bagian yang ingin diubah: ")
+
+                if pilihan == "1":
+                    data['brand'] = smart_input("Pilih nomor atau masukkan nama Brand: ", list(set(u['brand'] for u in unit_data)))
+                elif pilihan == "2":
+                    data['branch'] = smart_input("Pilih nomor atau masukkan nama Cabang: ", get_branch_list_by_brand(data['brand']))
+                    data['branch_code'] = get_branch_code(data['brand'], data['branch'])
+                elif pilihan == "3":
+                    data['unit'] = smart_input("Pilih nomor atau masukkan nama Unit: ", get_unit_list_by_brand(data['brand']))
+                    data['unit_code'] = get_unit_code(data['unit'])
+                elif pilihan == "4":
+                    try:
+                        tahun_input = input("Masukkan Tahun Produksi (4 digit): ").strip()
+                        if not tahun_input.isdigit() or len(tahun_input) != 4:
+                            print("Tahun harus berupa angka 4 digit.")
+                            continue
+                        tahun = int(tahun_input)
+                        if tahun < 2000 or tahun > 2099:
+                            print("Tahun harus antara 2000–2099.")
+                            continue
+                        data['production_year'] = tahun
+                    except ValueError:
+                        print("Tahun tidak valid.")
+                        continue
+                elif pilihan == "5":
+                    data['location'] = pilih_lokasi()
+                else:
+                    print("Pilihan tidak valid.")
+            else:
+                print("Data tidak disimpan.")
+                return
+
+    unit_data.append({
+        "mv_code": mv_code,
+        **data
+    })
+    print("Data berhasil ditambahkan.")
+
+## MENU 3 (Hapus Unit)
+
+def filter_unit_by_input():
+    brand_list = list(set(u['brand'] for u in unit_data))
+    brand = smart_input("Pilih Brand [atau ketik manual]: ", brand_list).upper()
+
+    branch_list = list(set(u['branch'] for u in unit_data if u['brand'].upper() == brand))
+    branch = smart_input("Pilih Branch [atau ketik manual]: ", branch_list)
+
+    unit_list = list(set(u['unit'] for u in unit_data if u['brand'].upper() == brand and u['branch'] == branch))
+    unit = smart_input("Pilih Unit [atau ketik manual]: ", unit_list)
+
+    hasil = [u for u in unit_data if u['brand'].upper() == brand and u['branch'] == branch and u['unit'] == unit]
+    return hasil
+
+def show_list(units, mode="filter"):
+    if not units:
+        print("Tidak ditemukan unit.")
+        return None
+
+    if mode == "filter":
+        print("\nDAFTAR UNIT:")
+        print(f"{'No.':<4} {'MV Code':<18} {'Cabang':<20} {'Unit':<18} {'Lokasi':<10}")
+        print("-" * 75)
+        for i, u in enumerate(units, 1):
+            print(f"{i:<4} {u['mv_code']:<18} {u['branch'][:20]:<20} {u['unit'][:18]:<18} {u['location']:<10}")
+    else:
+        print("\nDAFTAR UNIT:")
+        print(f"{'No.':<4} {'MV Code':<18} {'Brand':<10} {'Cabang':<20} {'Unit':<18} {'Lokasi':<10}")
+        print("-" * 85)
+        for i, u in enumerate(units, 1):
+            print(f"{i:<4} {u['mv_code']:<18} {u['brand']:<10} {u['branch'][:20]:<20} {u['unit'][:18]:<18} {u['location']:<10}")
+
+    pilih = input("Masukkan nomor unit yang ingin dihapus: ")
+    if not pilih.isdigit():
+        print("Tidak ada data yang terhapus, harus memasukkan angka")
+        return None
+
+    idx = int(pilih)
+    if idx < 1 or idx > len(units):
+        print("Nomor tidak ada dalam daftar.")
+        return None
+
+    return units[idx - 1]
+
+def hapus_unit():
+    if not unit_data:
+        print("Tidak ada data unit.")
+        return
+
+    print("\n=== HAPUS UNIT ===")
+    print("1. Cari pakai filter Brand/Branch/Unit")
+    print("2. Cari pakai MV Code")
+    metode = input("Pilih metode (1/2): ")
+
+    target = None
+    if metode == "1":
+        hasil = filter_unit_by_input()
+        target = show_list(hasil, mode="filter")
+        if not target:
+            return
+    elif metode == "2":
+        keyword = input("Masukkan MV Code (Masukkan min. 4 MV Code awal): ").upper()
+        hasil = [u for u in unit_data if keyword in u['mv_code']]
+        target = show_list(hasil, mode="code")
+        if not target:
+            return
+    else:
+        print("Pilihan tidak valid.")
+        return
+
+    konfirmasi = input(f"Yakin ingin hapus unit {target['mv_code']} ({target['unit']})? (Y/n): ").lower()
+    if konfirmasi == "y":
+        unit_data.remove(target)
+        print("Unit berhasil dihapus.")
+    else:
+        print("Dibatalkan.")
+
+
+
+## MENU 4 UPDATE DATA (Jika ada perubahan kepemilikan unit antar branch)
+
+def update_unit():
+    print("\nUPDATE DATA UNIT")
+    brand_list = list(set(u['brand'] for u in unit_data))
+    brand = smart_input("Pilih Brand [atau ketik manual]: ", brand_list).upper()
+
+    branch_list = list(set(u['branch'] for u in unit_data if u['brand'].upper() == brand))
+    branch = smart_input("Pilih Branch [atau ketik manual]: ", branch_list)
+
+    filtered = [u for u in unit_data if u['brand'].upper() == brand and u['branch'] == branch]
+    if not filtered:
+        print("Tidak ditemukan unit dengan filter tersebut.")
+        return
+
+    print("\nDAFTAR UNIT:")
+    print(f"{'No.':<4}{'MV_CODE':<18}{'CABANG':<18}{'UNIT':<18}{'LOKASI':<10}")
+    print("-" * 69)
+    for i, u in enumerate(filtered, 1):
+        print(f"{i:<4}{u['mv_code']:<18}{u['branch']:<18}{u['unit']:<18}{u['location']:<10}")
+
+    pilihan = input("\nMasukkan nomor unit yang ingin diupdate: ")
+    try:
+        idx = int(pilihan) - 1
+        unit = filtered[idx]
+    except:
+        print("Pilihan tidak valid.")
+        return
+
+    import copy
+    original_unit = copy.deepcopy(unit)
+
+    while True:
+        print("\nPilih bagian yang ingin diubah:")
+        print("1. Brand")
+        print("2. Branch")
+        print("3. Unit")
+        print("4. Tahun Produksi")
+        print("5. Lokasi")
+
+        pilihan = input("Masukkan nomor field: ")
+        if pilihan == "1":
+            unit['brand'] = smart_input("Masukkan Brand baru [atau pilih]: ", list(set(u['brand'] for u in unit_data))).upper()
+            branch_list = get_branch_list_by_brand(unit['brand'])
+            if branch_list:
+                unit['branch'] = smart_input("Pilih Branch baru [atau ketik manual]: ", branch_list)
+                unit['branch_code'] = get_branch_code(unit['brand'], unit['branch'])
+            else:
+                print("Brand belum punya cabang. Tambahkan cabang terlebih dahulu.")
+                unit.clear(); unit.update(original_unit)
+                return
+        elif pilihan == "2":
+            branch_list = get_branch_list_by_brand(unit['brand'])
+            unit['branch'] = smart_input("Pilih Branch baru [atau ketik manual]: ", branch_list)
+            unit['branch_code'] = get_branch_code(unit['brand'], unit['branch'])
+        elif pilihan == "3":
+            unit_list = get_unit_list_by_brand(unit['brand'])
+            unit['unit'] = smart_input("Masukkan Unit baru: ", unit_list)
+            unit['unit_code'] = get_unit_code(unit['unit'])
+        elif pilihan == "4":
+            tahun_input = input("Masukkan Tahun Produksi (4 digit): ")
+            if not tahun_input.isdigit() or len(tahun_input) != 4:
+                print("Tahun harus berupa angka 4 digit.")
+                continue
+            tahun = int(tahun_input)
+            if tahun < 2000 or tahun > 2099:
+                print("Tahun harus antara 2000 dan 2099.")
+                continue
+            unit['production_year'] = tahun
+        elif pilihan == "5":
+            unit['location'] = pilih_lokasi()
+        else:
+            print("Pilihan tidak valid.")
+            return
+
+        print("\nData setelah diedit:")
+        print(f"{'MV_CODE':<18}{'BRAND':<20}{'UNIT':<18}{'BRANCH':<20}{'YEAR':<6}{'LOCATION':<10}")
+        print("-" * 92)
+        print(f"{unit['mv_code']:<18}{unit['brand']:<20}{unit['unit']:<18}{unit['branch']:<20}{unit['production_year']:<6}{unit['location']:<10}")
+
+        ulang = input("Simpan perubahan ini? (Y/n): ")
+        if ulang.lower() == 'y':
+            print("Data unit berhasil diupdate.")
+            break
+        else:
+            ulangi = input("Ingin mengedit ulang data? (Y/n): ")
+            if ulangi.lower() != 'y':
+                unit.clear(); unit.update(original_unit)
+                print("Perubahan dibatalkan.")
+                return
+
+
+## MENU 5 HITUNG JUMLAH UNIT DI SETIAP CABANG & BUAT LIAT KAPASITAS PENYIMPANAN, JUMLAH STOK DAN SISA SLOT (jadi satu agar tidak banyak menu, dan bisa ngasih data informatif)
+
+def hitung_jumlah_unit_per_branch():
+    Total_Unit = {}
+    for unit in unit_data:
+        kode = unit['branch_code']
+        Total_Unit[kode] = Total_Unit.get(kode, 0) + 1
+    return Total_Unit
+
+def tampilkan_TotalUnit():
+    Total_Unit = hitung_jumlah_unit_per_branch()
+    print("\n DAFTAR TOTAL UNIT PER CABANG:")
+    print(f"{'KODE7':<6} | {'NAMA CABANG':<30} | {'TOTAL UNIT':<11}")
+    print("-" * 55)
+    for kode, jumlah in Total_Unit.items():
+        nama = cabang_data.get(kode, {}).get('nama', 'UNKNOWN')
+        print(f"{kode:<6} | {nama:<30} | {jumlah:<11}")
+
+
+def hitung_stok_per_location():
+    stok = {}
+    for unit in unit_data:
+        lokasi = unit['location']
+        stok[lokasi] = stok.get(lokasi, 0) + 1
+    return stok
+
+def tampilkan_stok():
+    stok = hitung_stok_per_location()
+    print("\n STOK PER CABANG:")
+    print(f"{'Location':<10} | {'Nama Cabang':<30} | {'Stok':<6} | {'Sisa Slot':<10}")
+    print("-" * 68)
+    for kode, data in cabang_data.items():
+        nama = data.get("nama", "UNKNOWN")
+        kapasitas = data.get("kapasitas", 0)
+        jumlah_stok = stok.get(kode, 0)
+        sisa = kapasitas - jumlah_stok
+        print(f"{kode:<10} | {nama:<30} | {jumlah_stok:<6} | {sisa:<10}")
+
+def menu_perhitungan_unit_stok():
+    tampilkan_TotalUnit()
+    tampilkan_stok()
+
+def main():
+    while True:
+        print("\n======= MENU UTAMA =======")
+        print("1. Tampilkan semua unit")
+        print("2. Tambah unit baru/cabang baru")
+        print("3. Hapus unit")
+        print("4. Update data unit")
+        print("5. Total Unit dan Stok")
+        print("6. Keluar")
+
+        pilihan = input("Pilih menu (1-6): ")
+
+        if pilihan == "1": tampilkan_unit()
+        elif pilihan == "2": tambah_unit()
+        elif pilihan == "3": hapus_unit()
+        elif pilihan == "4": update_unit()
+        elif pilihan == "5": menu_perhitungan_unit_stok()
+        elif pilihan == "6": print("=== TERIMA KASIH ==="); break
+        else:
+            print("Menu tidak valid.")
+
+# Jalankan program utama
+main()
